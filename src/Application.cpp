@@ -12,14 +12,17 @@ int main(int argc,char** argv)
 {
 	ArgParser parser(argc, argv);
 	auto parsedArgs = parser.ParseArguments();
-
+#ifdef _MSC_VER
 	ConsoleController ccont;
 	bool isTermOnByDef = ccont.IsVTAlreadyOn();
 	if (!isTermOnByDef) ccont.EnableVT();
+#endif
 
 	printImage(parsedArgs.Path.c_str(), parsedArgs.Width, parsedArgs.Ratio);
 
+#ifdef _MSC_VER
 	if (!isTermOnByDef) ccont.RestoreDefaults();
+#endif
 	return 0;
 }
 

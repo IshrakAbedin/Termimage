@@ -1,6 +1,18 @@
 #include "ArgParser.h"
 
+#include <filesystem>
 #include "fmt/core.h"
+
+// Becareful here about file system
+#ifdef _MSC_VER
+#if _MSC_VER > 1912
+namespace fsys = std::filesystem;
+#else
+namespace fsys = std::experimental::filesystem;
+#endif
+#else
+namespace fsys = std::filesystem;
+#endif
 
 ArgParser::ArgParser(int argc, char** argv)
     :m_State(State::Default), m_Path(""), m_Width(DEFAULT_WIDTH), m_Ratio(DEFAULT_HWRATIO),
@@ -39,7 +51,7 @@ Arguments ArgParser::ParseArguments()
                 case State::Default:
                     if(!PathIsParsed)
                     {
-                        m_Path = arg;
+                        m_Path = fsys::absolute(arg).string();
                         PathIsParsed = true;
                     }
                     else
@@ -102,7 +114,7 @@ Arguments ArgParser::ParseArguments()
 
 void ArgParser::PrintHelpTextAndExit()
 {
-	fmt::print("A Terminal image viewer for VT100 emulated terminals.\nWritten by Mohammad Ishrak Abedin.\n\n");
+	fmt::print("TERMIMAGE || A Terminal image viewer for VT100 emulated terminals.\nWritten by Mohammad Ishrak Abedin.\n\n");
 	fmt::print("POSITIONAL ARGUMENTS\n--------------------\n");
 	fmt::print("[Path]\t\tPath of the image to view.\n\n");
 	fmt::print("OPTIONAL ARGUMENTS\n------------------\n");
