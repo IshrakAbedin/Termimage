@@ -52,10 +52,15 @@ Arguments ArgParser::ParseArguments()
                     try
                     {
                         m_Width = std::stoi(arg);
+						if (m_Width < 0) 
+						{
+							fmt::print("Bad width value {0}. Defaulting to {1}.\n", m_Width, DEFAULT_WIDTH);
+							m_Width = DEFAULT_WIDTH; 
+						}
                     }
                     catch(const std::invalid_argument& e)
                     {
-						fmt::print("Invalid Width\n");
+						fmt::print("Invalid Width [{}]. Width must be non-negative integer.\n\n", arg);
                         PrintHelpTextAndExit();
                     }             
                     m_State = State::Default;
@@ -65,10 +70,15 @@ Arguments ArgParser::ParseArguments()
                     try
                     {
                         m_Ratio = std::stod(arg);
+						if (m_Ratio <= 0.000001) 
+						{
+							fmt::print("Bad ratio value {0}. Defaulting to {1}.\n", m_Ratio, DEFAULT_HWRATIO);
+							m_Ratio = DEFAULT_HWRATIO; 
+						}
                     }
                     catch(const std::invalid_argument& e)
                     {
-						fmt::print("Invalid Ratio\n");
+						fmt::print("Invalid Ratio [{}]. Ratio must be postive float.\n\n", arg);
                         PrintHelpTextAndExit();
                     }
                     m_State = State::Default;
@@ -83,11 +93,21 @@ Arguments ArgParser::ParseArguments()
     }
     
     if(PathIsParsed) return { m_Path, m_Width, m_Ratio };
-    else PrintHelpTextAndExit();
+	else 
+	{
+		fmt::print("Path of image must be passed.\n\n");
+		PrintHelpTextAndExit(); 
+	}
 }
 
 void ArgParser::PrintHelpTextAndExit()
 {
-	fmt::print("Place Holder Help Text\n");
+	fmt::print("A Terminal image viewer for VT100 emulated terminals.\nWritten by Mohammad Ishrak Abedin.\n\n");
+	fmt::print("POSITIONAL ARGUMENTS\n--------------------\n");
+	fmt::print("[Path]\t\tPath of the image to view.\n\n");
+	fmt::print("OPTIONAL ARGUMENTS\n------------------\n");
+	fmt::print("[-w][--width]\tDesired width of the image. Try to match console size. (Default 120)\n");
+	fmt::print("[-r][--ratio]\tCompression ratio of the image. Console character blocks are not perfect squares. (Default 2.2)\n");
+	fmt::print("[-h][--help]\tBring up help and close the application.\n");
     exit(0); 
 }
