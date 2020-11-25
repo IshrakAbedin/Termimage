@@ -1,23 +1,23 @@
-#include <iostream>
 #include "fmt/color.h"
+
 #include "ImageManip.h"
 #include "ConsoleController.h"
-
-#define ESC "\x1b"
-#define CSI "\x1b["
+#include "ArgParser.h"
 
 constexpr char block = 219;
 
 void printImage(const char* path, int targetWidth, double hwratio);
 
-int main()
+int main(int argc,char** argv)
 {
+	ArgParser parser(argc, argv);
+	auto parsedArgs = parser.ParseArguments();
+
 	ConsoleController ccont;
 	bool isTermOnByDef = ccont.IsVTAlreadyOn();
 	if (!isTermOnByDef) ccont.EnableVT();
 
-	printImage("G:\\REPOS\\Termimage\\testimg\\heavy.jpg", 120, 2.2);
-	std::cin.get();
+	printImage(parsedArgs.Path.c_str(), parsedArgs.Width, parsedArgs.Ratio);
 
 	if (!isTermOnByDef) ccont.RestoreDefaults();
 	return 0;
