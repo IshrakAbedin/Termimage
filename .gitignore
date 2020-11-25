@@ -1,0 +1,6 @@
+bin/*
+obj/*
+testimg/*
+*.sln
+*.vcxproj*
+.vs/*
