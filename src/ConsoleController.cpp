@@ -1,3 +1,4 @@
+#ifdef _MSC_VER
 #include "ConsoleController.h"
 
 #include "fmt/core.h"
@@ -13,3 +14,4 @@ ConsoleController::ConsoleController()
 ConsoleController::~ConsoleController()
 {
 }
+#endif

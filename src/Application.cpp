@@ -1,10 +1,16 @@
 #include "fmt/color.h"
 
-#include "ImageManip.h"
-#include "ConsoleController.h"
 #include "ArgParser.h"
+#include "ImageManip.h"
 
-constexpr char block = 219;
+#ifdef _MSC_VER
+#include "ConsoleController.h"
+#endif
+
+
+#ifdef _MSC_VER
+auto block = fmt::format("{0}", (char)219);
+#endif
 
 void printImage(const char* path, int targetWidth, double hwratio);
 
@@ -47,7 +53,11 @@ void printImage(const char* path, int targetWidth, double hwratio)
 			auto r = outputImagePtr[i * targetWidth * 3 + j * 3 + 0];
 			auto g = outputImagePtr[i * targetWidth * 3 + j * 3 + 1];
 			auto b = outputImagePtr[i * targetWidth * 3 + j * 3 + 2];
-			fmt::print(fmt::fg(fmt::rgb(r, g, b)), "{0}", block);
+#ifdef _MSC_VER
+			fmt::print(fmt::fg(fmt::rgb(r, g, b)), block);
+#else
+			fmt::print(fmt::fg(fmt::rgb(r, g, b)), "\u2588");
+#endif
 		}
 		fmt::print("\n");
 	}
