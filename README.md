@@ -28,7 +28,7 @@
 ---
 ## *Building for Windows (MSVC/ Visual Studio)*
 ---
-*Powershell scripts are provided to make the build process faster. One might need to change **Execution Policy** to execute ps1 scripts. Alternatively the scripts can be converted to **bat** or **com** files to execute in **cmd**. The Windows version is targeted towards **MSVC** using **Microsoft Visual Studio**. Visual Studio version **2017 or Higher** recommended. Becareful about the fsys namespace alias in **[MemoryCore.h](src/ArgParser.cpp)** since C++ 2017 standard might be experimental in VS2017 and use ```std::experimental::filesystem```, but in 2019, it should use ```std::filesystem```.*
+*Powershell scripts are provided to make the build process faster. One might need to change **Execution Policy** to execute ps1 scripts. Alternatively the scripts can be converted to **bat** or **com** files to execute in **cmd**. The Windows version is targeted towards **MSVC** using **Microsoft Visual Studio**. Visual Studio version **2017 or Higher** recommended. Becareful about the fsys namespace alias in **[ArgParser.cpp](src/ArgParser.cpp)** since C++ 2017 standard might be experimental in VS2017 and use ```std::experimental::filesystem```, but in 2019, it should use ```std::filesystem```.*
 
 Run the following commands in step to generate project files and build the project.
 ```powershell
@@ -38,7 +38,7 @@ Run the following commands in step to generate project files and build the proje
 ```
 *At this point, a **Visual Studio Solution** will be generated. Use it to build the project.*
 
-> ***VS 2017** solution by **Premake5** has some **bug** and the Windows SDK is set to 8.1 or lower version. If using **VS 2017**, **manually set Windows SDK to the latest Windows 10 one**, by going to **Project > Termimage Properties... > Configuration Properties > General > Windows SDK Version** and selecting the latest one.*
+> ***VS 2017** solution by **Premake5** has some **bugs** and the Windows SDK is set to 8.1 or lower version. If using **VS 2017**, **manually set Windows SDK to the latest Windows 10 one**, by going to **Project > Termimage Properties... > Configuration Properties > General > Windows SDK Version** and selecting the latest one.*
 
 ---
 ## *Building for Linux (GCC/ Make)*
