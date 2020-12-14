@@ -70,7 +70,7 @@ Arguments ArgParser::ParseArguments()
                             m_Width = DEFAULT_WIDTH;
                         }
                     }
-                    catch (const std::invalid_argument &e)
+                    catch (const std::invalid_argument)
                     {
                         fmt::print("Invalid Width [{}]. Width must be non-negative integer.\n\n", arg);
                         PrintHelpTextAndExit();
@@ -88,7 +88,7 @@ Arguments ArgParser::ParseArguments()
                             m_Ratio = DEFAULT_HWRATIO;
                         }
                     }
-                    catch (const std::invalid_argument &e)
+                    catch (const std::invalid_argument)
                     {
                         fmt::print("Invalid Ratio [{}]. Ratio must be postive float.\n\n", arg);
                         PrintHelpTextAndExit();
@@ -119,8 +119,8 @@ void ArgParser::PrintHelpTextAndExit()
     fmt::print("POSITIONAL ARGUMENTS\n--------------------\n");
     fmt::print("[Path]\t\tPath of the image to view.\n\n");
     fmt::print("OPTIONAL ARGUMENTS\n------------------\n");
-    fmt::print("[-w][--width]\tDesired width of the image. Try to match console size. (Default 120)\n");
-    fmt::print("[-r][--ratio]\tCompression ratio of the image. Console character blocks are not perfect squares. (Default 2.2)\n");
+    fmt::print("[-w][--width]\tDesired width of the image. Try to match console size. (Default {})\n", DEFAULT_WIDTH);
+    fmt::print("[-r][--ratio]\tCompression ratio of the image. Console character blocks are not perfect squares. (Default {})\n", DEFAULT_HWRATIO);
     fmt::print("[-h][--help]\tBring up help and close the application.\n");
     exit(0);
 }
