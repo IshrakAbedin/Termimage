@@ -35,11 +35,11 @@ private:
     int m_Width;
     double m_Ratio;
     int m_Argc;
-    char** m_Argv;
+    char **m_Argv;
 
 public:
     ArgParser() = delete;
-    ArgParser(int argc, char** argv);
+    ArgParser(int argc, char **argv);
     Arguments ParseArguments();
 
 private:

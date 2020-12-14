@@ -7,32 +7,33 @@
 #include "ConsoleController.h"
 #endif
 
-
 #ifdef _MSC_VER
 auto block = fmt::format("{0}", (char)219);
 #endif
 
-void printImage(const char* path, int targetWidth, double hwratio);
+void printImage(const char *path, const int targetWidth, const double hwratio);
 
-int main(int argc,char** argv)
+int main(int argc, char **argv)
 {
 	ArgParser parser(argc, argv);
 	auto parsedArgs = parser.ParseArguments();
 #ifdef _MSC_VER
 	ConsoleController ccont;
 	bool isTermOnByDef = ccont.IsVTAlreadyOn();
-	if (!isTermOnByDef) ccont.EnableVT();
+	if (!isTermOnByDef)
+		ccont.EnableVT();
 #endif
 
 	printImage(parsedArgs.Path.c_str(), parsedArgs.Width, parsedArgs.Ratio);
 
 #ifdef _MSC_VER
-	if (!isTermOnByDef) ccont.RestoreDefaults();
+	if (!isTermOnByDef)
+		ccont.RestoreDefaults();
 #endif
 	return 0;
 }
 
-void printImage(const char* path, int targetWidth, double hwratio)
+void printImage(const char *path, const int targetWidth, const double hwratio)
 {
 	ImageManip img(path, 3);
 	auto w = img.GetInputWidth();
@@ -44,7 +45,7 @@ void printImage(const char* path, int targetWidth, double hwratio)
 
 	img.ResizeImage(targetWidth, targetHeight, 3);
 	auto outputImagePtr = img.GetOutputImagePtr();
-	
+
 	// Iterate and print
 	for (int i = 0; i < targetHeight; i++)
 	{

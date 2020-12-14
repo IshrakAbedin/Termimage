@@ -9,7 +9,6 @@ private:
 	DWORD m_DefaultOutMode;
 	HANDLE m_HStdin;
 	HANDLE m_HStdout;
-	bool m_Init;
 
 public:
 	ConsoleController();
