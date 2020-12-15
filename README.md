@@ -9,7 +9,7 @@
 ---
 - [Premake 5.0 Alpha](https://premake.github.io/)
 
-*Premake5 is already provided for Windows in the 'premake' folder.*
+*Premake5 is already provided for Windows in the `premake` folder.*
 
 ## *Libraries Used*
 ---
@@ -62,7 +62,7 @@ make config=release
 ---
 ## Using the Application
 ---
-The application must be supplied with an image path and there are 3 other optional arguments.
+After building, the executable is located in `bin/Release/` or `bin/Debug/` based on the build configuration. The application must be supplied with an image path and there are 3 other optional arguments.
 
 *Example for Windows*
 ```powershell
