@@ -74,9 +74,14 @@ Termimage.exe path_to_image -w 120 -r 2.25
 Termimage path_to_image -w 140 -r 2.1
 ```
 
-*Example of Auto Scaling Powershell Script (Works best in emulated terminals like **Windows Terminal**)*
+*Example of Auto Scaling Powershell Command (Works best in emulated terminals like **Windows Terminal**)*
 ```powershell
 Termimage.exe path_to_image -w $Host.UI.RawUI.WindowSize.Width
+```
+
+*Example of Auto Scaling Bash Command*
+```bash
+Termimage path_to_image -w $COLUMNS
 ```
 Similar approach is possible in other environments based on where the application is running.
 
