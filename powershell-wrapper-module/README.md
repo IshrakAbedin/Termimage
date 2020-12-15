@@ -9,12 +9,19 @@ This module wrapper works to ease the use of Termimage from Powershell. When any
 Keep the module in one of the powershell module directories such as `C:\Users\UserName\Documents\PowerShell\Modules` or navigate to the directory where the module is located.
 
 Import module using,
+
 ```powershell
 # Exports function Show-Image
 Import-Module Termimage-PS-Wrapper
 ```
 
-Tested with **PSCORE**. *The module importing can be put in the profile script of Powershell, directory of which is accessible using the ENVIRONMENT VARIABLE* `$PROFILE`.
+If facing problems in older versions of Powershell, instead import using,
+```powershell
+# Exports function Show-Image
+Import-Module Termimage-PS-Wrapper\Termimage-PS-Wrapper.psm1
+```
+
+*The module importing can be put in the profile script of Powershell, directory of which is accessible using the ENVIRONMENT VARIABLE* `$PROFILE`.
 
 ---
 ## Using Show-Image Function
