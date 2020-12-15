@@ -16,32 +16,32 @@ static constexpr auto RATIO_STR2 = "--ratio";
 
 struct Arguments
 {
-    std::string Path;
-    int Width;
-    double Ratio;
+	std::string Path;
+	int Width;
+	double Ratio;
 };
 
 class ArgParser
 {
 private:
-    enum class State
-    {
-        Default = 0,
-        Width,
-        Ratio
-    };
-    State m_State;
-    std::string m_Path;
-    int m_Width;
-    double m_Ratio;
-    int m_Argc;
-    char **m_Argv;
+	enum class State
+	{
+		Default = 0,
+		Width,
+		Ratio
+	};
+	State m_State;
+	std::string m_Path;
+	int m_Width;
+	double m_Ratio;
+	int m_Argc;
+	char **m_Argv;
 
 public:
-    ArgParser() = delete;
-    ArgParser(int argc, char **argv);
-    Arguments ParseArguments();
+	ArgParser() = delete;
+	ArgParser(int argc, char **argv);
+	Arguments ParseArguments();
 
 private:
-    void PrintHelpTextAndExit();
+	void PrintHelpTextAndExit();
 };
