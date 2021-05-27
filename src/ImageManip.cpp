@@ -31,6 +31,8 @@ void ImageManip::ResizeImage(const unsigned int targetWidth, const unsigned int 
 	m_OWidth = targetWidth;
 	m_OHeight = targetHeight;
 	m_OChannels = targetChannel;
+	if (m_OImage != nullptr)
+		delete[] m_OImage;
 	m_OImage = new unsigned char[m_OWidth * m_OHeight * m_OChannels];
 	stbir_resize_uint8(m_Image, m_Width, m_Height, m_Width * 3, m_OImage, m_OWidth, m_OHeight, m_OWidth * 3, m_OChannels);
 }
